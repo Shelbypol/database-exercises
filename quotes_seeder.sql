@@ -13,7 +13,9 @@ INSERT INTO quotes (author_first_name, author_last_name, quote)
 VALUES  ('Douglas', 'Adams', 'Don''t panic'),
         ('Douglas', 'Adams', 'Time is an illusion. Lunchtime doubly so.'),
         ('Mark', 'Twain', 'Clothes make the man. Naked people have little or no influence on society.'),
-        ('Kurt', 'Vonnegut', 'The universe is a big place, perhaps the biggest.');
+        ('Kurt', 'Vonnegut', 'The universe is a big place, perhaps the biggest.'),
+        ('Uncle', 'Iroh', 'Sharing tea with a fascinating stranger is one of life''s true delights.');
+
 
 # This is an example of a default value being added
 INSERT INTO quotes (author_first_name, author_last_name, quote)
