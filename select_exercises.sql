@@ -10,15 +10,15 @@ SELECT release_date FROM albums WHERE record_name = 'Sgt. Peppers Lonely Hearts 
 
 -- 3-3
 SELECT 'Genre for Nevermind' AS 'Exercise 3-3';
-SELECT genre FROM albums WHERE record_name = 'Nevermind';
+SELECT genre FROM albums WHERE record_name = 'nevermind';
 
 -- 3-4
 SELECT 'Albums release in 1990''s' AS 'Exercise 3-4';
-SELECT id, artist_name record_name, release_date FROM albums WHERE release_date BETWEEN 1990 AND 1999;
+SELECT id, artist_name, record_name, release_date FROM albums WHERE release_date BETWEEN 1990 AND 1999;
 
 -- 3-5
 SELECT 'Albums with less 20 million cert sales' AS 'Exercise 3-5';
-SELECT id, record_name, sales FROM albums WHERE sales > 20;
+SELECT id, record_name, sales FROM albums WHERE sales < 20;
 
 -- 3-6
 SELECT 'Albums with rock' AS 'Exercise 3-6';
