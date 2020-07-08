@@ -1,6 +1,8 @@
 #1
 USE employees;
 
+SELECT COUNT(*) FROM employees;
+
 # 2
 SELECT CONCAT(first_name, ' ', last_name)
 FROM employees
