@@ -12,7 +12,7 @@ SELECT first_name, last_name, hire_date, curdate() ,DATEDIFF(CURDATE(), hire_dat
 FROM employees
 WHERE birth_date LIKE '%12-25'
   AND hire_date BETWEEN '1990-01-01' AND '1999-12-31'
-ORDER BY birth_date, hire_date DESC;
+ORDER BY days_since_hired DESC ;
 
 
 
