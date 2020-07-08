@@ -14,7 +14,7 @@ WHERE  last_name LIKE 'e%';
 
 
 #4
-SELECT  hire_date, count(hire_date)
+SELECT hire_date, count(hire_date)
 FROM employees
 WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
 GROUP BY hire_date;
