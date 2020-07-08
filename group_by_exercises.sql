@@ -33,13 +33,9 @@ GROUP BY last_name;
 #7
 SELECT gender, COUNT(gender)
 FROM employees
-WHERE (gender = 'M'
+WHERE (gender = 'M' OR gender = 'F')
   AND (first_name = 'Irena'
     OR first_name = 'Vidya'
-    OR first_name = 'Maya'))
-OR (gender = 'F'
-    AND (first_name = 'Irena'
-        OR first_name = 'Vidya'
-        OR first_name = 'Maya'))
+    OR first_name = 'Maya')
 
 GROUP BY gender;
