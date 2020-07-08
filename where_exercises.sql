@@ -46,7 +46,7 @@ GROUP BY first_name;
 SELECT last_name
 FROM employees
 WHERE last_name LIKE 'e%'
-   OR last_name LIKE'%e';
+   OR last_name LIKE '%e';
 
 # 4
 SELECT last_name
