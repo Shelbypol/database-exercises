@@ -32,6 +32,11 @@ SELECT * FROM albums;
 # SET artist_name = 'AC/DC', record_name = 'Back in Black'
 # WHERE id = 1;
 
+
+
+
+# CLASS LEC NOTES
+
 USE codeup_test_db;
 CREATE TABLE pets(
     id INT UNSIGNED,
@@ -75,3 +80,40 @@ ALTER TABLE pets
 DROP INDEX `pet_name_key`;
 
 SHOW INDEX FROM pets;
+
+DROP TABLE IF EXISTS owners;
+CREATE TABLE owners (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    address VARCHAR(25) DEFAULT 'undisclosed'
+);
+
+SHOW CREATE TABLE owners;
+
+DROP TABLE IF EXISTS pets;
+CREATE TABLE pets(
+     id INT UNSIGNED AUTO_INCREMENT,
+     pet_NAME VARCHAR(30)  NOT NULL,
+     owner_id INT UNSIGNED,
+     age INT,
+     PRIMARY KEY (id),
+     FOREIGN KEY (owner_id) REFERENCES owners(id)
+);
+DESCRIBE PETS;
+
+INSERT INTO pets(pet_name, owner_id, age)
+VALUES ('dogname', 1,2);
+
+INSERT INTO pets(pet_name, owner_id, age)
+VALUES ('leelah ', 3, 5);
+
+INSERT INTO pets(pet_name, owner_id, age)
+VALUES ('maggie', 2, 2);
+
+INSERT INTO owners(name, address)
+VALUES('BOBA Fett', '1339 Death start rd'),
+       ('shelby polasek', '13368 pecan glade');
+
+INSERT INTO owners(name)
+VALUES('NAME');
+

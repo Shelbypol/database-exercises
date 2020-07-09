@@ -1,22 +1,22 @@
 # SHOW DATABASES;
-# USE join_test_db;
-# SHOW TABLES;
-# SELECT * FROM users;
-#
-# # JOIN / INNER JOIN
-# SELECT users.name as user_name, roles.name as role_name
-# FROM users
-# JOIN roles ON users.role_id = roles.id;
-#
-# # LEFT JOIN
-# SELECT users.name AS user_name, roles.name AS role_name
-# FROM users
-# LEFT JOIN roles ON users.role_id = roles.id;
-#
-# # RIGHT JOIN
-# SELECT users.name AS user_name, roles.name AS role_name
-# FROM users
-# RIGHT JOIN roles ON users.role_id = roles.id;
+USE join_test_db;
+SHOW TABLES;
+SELECT * FROM users;
+
+# JOIN / INNER JOIN
+SELECT users.name as user_name, roles.name as role_name
+FROM users
+JOIN roles ON users.role_id = roles.id;
+
+# LEFT JOIN
+SELECT users.name AS user_name, roles.name AS role_name
+FROM users
+LEFT JOIN roles ON users.role_id = roles.id;
+
+# RIGHT JOIN
+SELECT users.name AS user_name, roles.name AS role_name
+FROM users
+RIGHT JOIN roles ON users.role_id = roles.id;
 
 # 4
 # LIST OF ROLES WITH NUM USERS HAVE GIVEN ROLE
@@ -55,7 +55,6 @@ ORDER BY dept_name;
 
 # 4
 # NEED EMPLOYEES TITLES WITH COUNT WHO WORK IN CUSTOMER SERVICE
-
 SELECT t.title AS 'Title', COUNT(t.title)
 FROM departments as d
  JOIN dept_emp as de
@@ -68,13 +67,34 @@ GROUP BY title;
 
 # 5
 # FIND CURRENT SALARY OF ALL MANAGERS
-SELECT d.dept_name as 'Department Name', CONCAT(e.first_name, ' ', e.last_name) AS Name, salary AS Salary
-FROM departments AS d
+SELECT de.dept_name as 'Department Name', CONCAT(e.first_name, ' ', e.last_name) AS Name, salary AS Salary
+FROM employees as e
 JOIN dept_manager as dm
-    ON d.dept_no = dm.dept_no
-JOIN salaries as s
-    ON s.emp_no = dm.emp_no
-JOIN employees as e
-    ON s.emp_no = e.emp_no
-WHERE s.to_date = '9999-01-01';
+    ON dm.emp_no = e.emp_no
+JOIN departments AS de
+    ON de.dept_no = dm.dept_no
+JOIN salaries s
+    ON e.emp_no = s.emp_no
+WHERE dm.to_date = '9999-01-01' AND s.to_date = '9999-01-01'
+ORDER BY dept_name;
 
+
+# BONUS
+# Find names of all current employees, their department name, and their current manager's name.
+# 240,124 Rows
+#     Employee Name | Department Name  |  Manager Name
+#     --------------|------------------|-----------------
+#      Huan Lortz   | Customer Service | Yuchang Weedman
+#
+#      .....
+
+
+SELECT CONCAT(e.first_name, ' ', e.last_name) AS 'Employee Name', d.dept_name AS 'Department Name',  CONCAT(e.first_name, ' ',e.last_name) AS 'Manager Name'
+FROM departments AS d
+JOIN dept_emp AS de
+    ON de.dept_no = d.dept_no
+JOIN employees AS e
+    ON e.emp_no = de.emp_no
+JOIN dept_manager as dm
+    ON dm.emp_no = e.emp_no
+WHERE de.to_date = '1999-01-01' AND e;
