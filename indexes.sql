@@ -24,6 +24,7 @@ DESCRIBE titles;
 USE codeup_test_db;
 ALTER TABLE albums
 ADD UNIQUE (artist_name, record_name);
+DESCRIBE albums;
 SELECT * FROM albums;
 
 # ================== TEST CONSTRAINT WORKED
