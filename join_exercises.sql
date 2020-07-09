@@ -1,4 +1,6 @@
+SHOW DATABASES;
 USE join_test_db;
+SHOW TABLES;
 SELECT * FROM users;
 
 # JOIN / INNER JOIN
@@ -11,10 +13,22 @@ SELECT users.name AS user_name, roles.name AS role_name
 FROM users
 LEFT JOIN roles ON users.role_id = roles.id;
 
-# RIGHT JOINE
+# RIGHT JOIN
 SELECT users.name AS user_name, roles.name AS role_name
 FROM users
 RIGHT JOIN roles ON users.role_id = roles.id;
+
+# 4
+# LIST OF ROLES WITH NUM USERS HAVE GIVEN ROLE
+# LEFT JOIN return 0 and null for commentator
+SELECT r.name as role, COUNT(r.name)
+FROM users as u
+LEFT JOIN roles as r
+  ON u.role_id = r.id
+GROUP BY r.name;
+
+
+
 
 
 # USE employees;
