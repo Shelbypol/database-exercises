@@ -28,9 +28,6 @@ LEFT JOIN roles as r
 GROUP BY r.name;
 
 
-
-
-
 # USE employees;
 #
 # SELECT d.dept_name, CONCAT(e.first_name, ' ', e.last_name) AS 'Department Manager'
