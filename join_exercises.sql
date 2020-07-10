@@ -29,9 +29,10 @@ GROUP BY r.name;
 
 # EMPLOYEE DATABASE
 
-# 2
 USE employees;
 
+# 2
+# shows each department along with the name of the current manager for that department.
 SELECT dept_name AS 'Department Name', CONCAT(e.first_name, ' ' , e.last_name) AS 'Manager Name'
 FROM employees as e
          JOIN dept_manager as dm
@@ -43,6 +44,7 @@ ORDER BY dept_name;
 
 
 # 3
+# Find the name of all departments currently managed by women.
 SELECT dept_name AS 'Department Name', CONCAT(e.first_name, ' ' , e.last_name) AS 'Manager Name'
 FROM employees as e
 JOIN dept_manager as dm
@@ -82,19 +84,14 @@ ORDER BY dept_name;
 # BONUS
 # Find names of all current employees, their department name, and their current manager's name.
 # 240,124 Rows
-#     Employee Name | Department Name  |  Manager Name
-#     --------------|------------------|-----------------
-#      Huan Lortz   | Customer Service | Yuchang Weedman
-#
-#      .....
-
-
-SELECT CONCAT(e.first_name, ' ', e.last_name) AS 'Employee Name', d.dept_name AS 'Department Name',  CONCAT(e.first_name, ' ',e.last_name) AS 'Manager Name'
-FROM departments AS d
-JOIN dept_emp AS de
-    ON de.dept_no = d.dept_no
-JOIN employees AS e
-    ON e.emp_no = de.emp_no
-JOIN dept_manager as dm
-    ON dm.emp_no = e.emp_no
-WHERE de.to_date = '1999-01-01' AND e;
+SELECT CONCAT(e.first_name, ' ', e.last_name) AS 'Employee Name', d.dept_name AS 'Department Name', CONCAT(e1.first_name , ' ', e1.last_name) AS 'Manager Name'
+FROM employees AS e
+ JOIN dept_emp AS de
+      ON de.emp_no = e.emp_no
+ JOIN departments AS d
+      ON d.dept_no = de.dept_no
+ JOIN dept_manager AS dm
+      ON dm.dept_no = d.dept_no
+JOIN employees AS e1
+    ON dm.emp_no = e1.emp_no
+WHERE dm.to_date = '9999-01-01' AND de.to_date = '9999-01-01';
