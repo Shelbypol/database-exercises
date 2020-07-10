@@ -33,19 +33,19 @@ USE employees;
 
 # 2
 # shows each department along with the name of the current manager for that department.
-SELECT dept_name AS 'Department Name', CONCAT(e.first_name, ' ' , e.last_name) AS 'Manager Name'
+SELECT d.dept_name AS 'Department Name', CONCAT(e.first_name, ' ' , e.last_name) AS 'Manager Name'
 FROM employees as e
          JOIN dept_manager as dm
               ON dm.emp_no = e.emp_no
          JOIN departments as d
               ON d.dept_no = dm.dept_no
-WHERE dm.to_date LIKE '%9999-01-01%'
-ORDER BY dept_name;
+WHERE dm.to_date = '9999-01-01'
+ORDER BY d.dept_name;
 
 
 # 3
 # Find the name of all departments currently managed by women.
-SELECT dept_name AS 'Department Name', CONCAT(e.first_name, ' ' , e.last_name) AS 'Manager Name'
+SELECT d.dept_name AS 'Department Name', CONCAT(e.first_name, ' ' , e.last_name) AS 'Manager Name'
 FROM employees as e
 JOIN dept_manager as dm
     ON dm.emp_no = e.emp_no
@@ -57,26 +57,26 @@ ORDER BY dept_name;
 
 # 4
 # NEED EMPLOYEES TITLES WITH COUNT WHO WORK IN CUSTOMER SERVICE
-SELECT t.title AS 'Title', COUNT(t.title)
+SELECT t.title AS 'Title', COUNT(de.emp_no)
 FROM departments as d
- JOIN dept_emp as de
-    ON de.dept_no = d.dept_no
-JOIN titles as t
-    ON t.emp_no = de.emp_no
+    JOIN dept_emp as de
+        ON de.dept_no = d.dept_no
+    JOIN titles as t
+        ON t.emp_no = de.emp_no
 WHERE d.dept_name ='Customer Service'
-    AND t.to_date = '9999-01-01'
-GROUP BY title;
+    AND t.to_date = '9999-01-01' AND de.to_date = '9999-01-01'
+GROUP BY t.title;
 
 # 5
 # FIND CURRENT SALARY OF ALL MANAGERS
-SELECT de.dept_name as 'Department Name', CONCAT(e.first_name, ' ', e.last_name) AS Name, salary AS Salary
-FROM employees as e
-JOIN dept_manager as dm
-    ON dm.emp_no = e.emp_no
-JOIN departments AS de
-    ON de.dept_no = dm.dept_no
-JOIN salaries s
-    ON e.emp_no = s.emp_no
+SELECT de.dept_name AS 'Department Name', CONCAT(e.first_name, ' ', e.last_name) AS Name, salary AS Salary
+FROM employees AS e
+    JOIN dept_manager AS dm
+        ON dm.emp_no = e.emp_no
+    JOIN departments AS de
+        ON de.dept_no = dm.dept_no
+    JOIN salaries AS s
+        ON e.emp_no = s.emp_no
 WHERE dm.to_date = '9999-01-01' AND s.to_date = '9999-01-01'
 ORDER BY dept_name;
 
@@ -86,12 +86,13 @@ ORDER BY dept_name;
 # 240,124 Rows
 SELECT CONCAT(e.first_name, ' ', e.last_name) AS 'Employee Name', d.dept_name AS 'Department Name', CONCAT(e1.first_name , ' ', e1.last_name) AS 'Manager Name'
 FROM employees AS e
- JOIN dept_emp AS de
-      ON de.emp_no = e.emp_no
- JOIN departments AS d
-      ON d.dept_no = de.dept_no
- JOIN dept_manager AS dm
-      ON dm.dept_no = d.dept_no
-JOIN employees AS e1
-    ON dm.emp_no = e1.emp_no
+     JOIN dept_emp AS de
+          ON de.emp_no = e.emp_no
+     JOIN departments AS d
+          ON d.dept_no = de.dept_no
+     JOIN dept_manager AS dm
+          ON dm.dept_no = d.dept_no
+     JOIN employees AS e1
+        ON dm.emp_no = e1.emp_no
 WHERE dm.to_date = '9999-01-01' AND de.to_date = '9999-01-01';
+
