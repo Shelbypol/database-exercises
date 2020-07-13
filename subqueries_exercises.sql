@@ -30,7 +30,7 @@ FROM employees
 WHERE emp_no IN (
     SELECT emp_no
     FROM dept_manager
-    WHERE to_date = '9999-01-01')
+    WHERE to_date > now())
   AND gender = 'F';
 
 
