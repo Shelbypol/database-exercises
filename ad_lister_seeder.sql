@@ -7,10 +7,10 @@ VALUES('Jay', 'Arredondo', 'jaymail@gmail.com'),
 
 SELECT * FROM users;
 
-INSERT INTO ads(title, description)
-VALUES('Sofa', 'small grey sofa'),
-      ('Spurs Tickets', 'floor seats against lakers'),
-      ('Exterminator', 'ants in my pants');
+INSERT INTO ads(title, description, user_id)
+VALUES('Sofa', 'small grey sofa', 1),
+      ('Spurs Tickets', 'floor seats against lakers', 2),
+      ('Exterminator', 'ants in my pants', 3);
 
 SELECT * FROM ads;
 
@@ -21,4 +21,10 @@ VALUES('Help Wanted'),
 
 SELECT * FROM categories;
 
+
+INSERT INTO ad_categories(category_id, ad_id)
+VALUES (2, 1),
+       (3, 1),
+       (2, 2),
+       (1, 3);
 SELECT * FROM ad_categories;

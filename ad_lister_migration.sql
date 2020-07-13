@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS ads(
     UNIQUE(user_id)
 );
 
+SHOW TABLES;
 DESCRIBE ads;
 
 CREATE TABLE IF NOT EXISTS categories(
@@ -32,13 +33,10 @@ CREATE TABLE IF NOT EXISTS categories(
 
 SHOW TABLES;
 DESCRIBE categories;
-DROP TABLE categories;
 
 CREATE TABLE IF NOT EXISTS ad_categories(
     category_id INT,
-    ad_id INT,
-    UNIQUE KEY(ad_id),
-    UNIQUE KEY(category_id)
+    ad_id INT
 );
 
 SHOW TABLES;
